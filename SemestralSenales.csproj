@@ -1,0 +1,185 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{354BC5A1-98D8-490C-B8E5-C230AF26A796}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>SemestralSenales</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="carrito.png" />
+    <Content Include="ExitBeatBocho.png" />
+    <Content Include="juegoyobstaculos.png" />
+    <Content Include="MenuBeatBocho.png" />
+    <Content Include="packages\NAudio.1.9.0\lib\net35\NAudio.dll" />
+    <Content Include="packages\NAudio.1.9.0\lib\net35\NAudio.xml" />
+    <Content Include="packages\NAudio.1.9.0\lib\netstandard2.0\NAudio.dll" />
+    <Content Include="packages\NAudio.1.9.0\lib\netstandard2.0\NAudio.xml" />
+    <Content Include="packages\NAudio.1.9.0\lib\uap10.0.10240\NAudio.dll" />
+    <Content Include="packages\NAudio.1.9.0\lib\uap10.0.10240\NAudio.xml" />
+    <Content Include="SemestralSeñales\bin\Debug\NAudio.dll" />
+    <Content Include="SemestralSeñales\bin\Debug\NAudio.xml" />
+    <Content Include="SemestralSeñales\bin\Debug\SemestralSeñales.exe" />
+    <Content Include="SemestralSeñales\bin\Debug\SemestralSeñales.pdb" />
+    <Content Include="SemestralSeñales\carrito.png" />
+    <Content Include="SemestralSeñales\ExitBeatBocho.png" />
+    <Content Include="SemestralSeñales\imagenes\carrito.png" />
+    <Content Include="SemestralSeñales\imagenes\ExitBeatBocho.png" />
+    <Content Include="SemestralSeñales\imagenes\juegoyobstaculos.png" />
+    <Content Include="SemestralSeñales\imagenes\MenuBeatBocho.png" />
+    <Content Include="SemestralSeñales\juegoyobstaculos.png" />
+    <Content Include="SemestralSeñales\MenuBeatBocho.png" />
+    <Content Include="SemestralSeñales\obj\Debug\SemestralSeñales.csproj.FileListAbsolute.txt" />
+    <Content Include="SemestralSeñales\obj\Debug\SemestralSeñales.exe" />
+    <Content Include="SemestralSeñales\obj\Debug\SemestralSeñales.pdb" />
+    <Content Include="SemestralSeñales\SemestralSeñales.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\COMMIT_EDITMSG" />
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\master" />
+    <None Include=".git\objects\03\3d7a5e9e2266753180f4e3a9299f575046701e" />
+    <None Include=".git\objects\0f\33a522c720975c549eec3043f13004572bb53f" />
+    <None Include=".git\objects\1f\f0c423042b46cb1d617b81efb715defbe8054d" />
+    <None Include=".git\objects\3b\73daa19dce48deadfd3d6193b94f7d12cacfae" />
+    <None Include=".git\objects\41\afcf4db3b05c5d811c6af99ebbf424c43b762c" />
+    <None Include=".git\objects\42\4a4ed50fa2797efe2c7468f84c979bf708264a" />
+    <None Include=".git\objects\49\7bb353c011d4592094bf2ff201fe9eee484a3e" />
+    <None Include=".git\objects\4c\e6fddec962ff3b86038d9939b6be5dfc1e6351" />
+    <None Include=".git\objects\4d\ef28628fe43bf8f36777a5610990b2947ad9cc" />
+    <None Include=".git\objects\56\efbc7b5f15b5166cc89dae0406895b57de0b67" />
+    <None Include=".git\objects\5b\84d0a07f8a38af39e4ee6ec16046af2c6fd61a" />
+    <None Include=".git\objects\68\63edb826846b34d7c0071cc7cff4333dc1db51" />
+    <None Include=".git\objects\6d\e1f24c4059309bef5bcd127a086ca9c8a0396a" />
+    <None Include=".git\objects\70\eb2ee063d0e1b28caca04d60018307372b0b01" />
+    <None Include=".git\objects\7d\4593b28334d1383217abfbb888b1ee60de0da8" />
+    <None Include=".git\objects\81\fb36b6b1b99a2a664cd3a66a0430f0c4e46e51" />
+    <None Include=".git\objects\8b\60838835ecd7c3584ca8698bac0bcfd2361838" />
+    <None Include=".git\objects\8c\ed413ae659c5025aae857acb7cae7ea70e73b0" />
+    <None Include=".git\objects\a7\b7e30d7503fcfecd7c8eef5caa9c0f26e39681" />
+    <None Include=".git\objects\af\1f7bdb66d2ca3327aac2ac9559821e77edce92" />
+    <None Include=".git\objects\af\7dbebbacef595e3089c01c05671016c21a8304" />
+    <None Include=".git\objects\bc\c7e6043ab4452803e51fdcbcd02c934aca9ae9" />
+    <None Include=".git\objects\d9\64d736b392ca54e44686da8ff23cb7df7e9085" />
+    <None Include=".git\objects\e1\2f27a510d6812d6926c58063f2b3a2d8d4e8bb" />
+    <None Include=".git\objects\ea\e7051cc8869938b02554c7c53f06fecab789fe" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\master" />
+    <None Include=".vs\SemestralSeñales\v16\.suo" />
+    <None Include=".vs\SemestralSeñales\v16\Server\sqlite3\db.lock" />
+    <None Include=".vs\SemestralSeñales\v16\Server\sqlite3\storage.ide" />
+    <None Include="packages\NAudio.1.9.0\.signature.p7s" />
+    <None Include="packages\NAudio.1.9.0\lib\uap10.0.10240\NAudio.pri" />
+    <None Include="packages\NAudio.1.9.0\NAudio.1.9.0.nupkg" />
+    <None Include="SemestralSeñales\App.config" />
+    <None Include="SemestralSeñales\bin\Debug\SemestralSeñales.exe.config" />
+    <None Include="SemestralSeñales\obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="SemestralSeñales\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales.csproj.CopyComplete" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales.csproj.CoreCompileInputs.cache" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales.csproj.GenerateResource.cache" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales.csprojAssemblyReference.cache" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales_MarkupCompile.cache" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales_MarkupCompile.i.cache" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales_MarkupCompile.i.lref" />
+    <None Include="SemestralSeñales\obj\Debug\SemestralSeñales_MarkupCompile.lref" />
+    <None Include="SemestralSeñales\packages.config" />
+    <None Include="SemestralSeñales\Properties\Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="SemestralSeñales\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SemestralSeñales\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SemestralSeñales\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SemestralSeñales\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SemestralSeñales\obj\Debug\App.g.cs" />
+    <Compile Include="SemestralSeñales\obj\Debug\App.g.i.cs" />
+    <Compile Include="SemestralSeñales\obj\Debug\MainWindow.g.cs" />
+    <Compile Include="SemestralSeñales\obj\Debug\MainWindow.g.i.cs" />
+    <Compile Include="SemestralSeñales\obj\Debug\SemestralSeñales_Content.g.i.cs" />
+    <Compile Include="SemestralSeñales\Properties\AssemblyInfo.cs" />
+    <Compile Include="SemestralSeñales\Properties\Resources.Designer.cs" />
+    <Compile Include="SemestralSeñales\Properties\Settings.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SemestralSeñales\obj\Debug\SemestralSeñales.g.resources" />
+    <EmbeddedResource Include="SemestralSeñales\obj\Debug\SemestralSeñales.Properties.Resources.resources" />
+    <EmbeddedResource Include="SemestralSeñales\Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\tags\" />
+    <Folder Include=".vs\SemestralSenales\v16\" />
+    <Folder Include="SemestralSeñales\bin\Release\" />
+    <Folder Include="SemestralSeñales\obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

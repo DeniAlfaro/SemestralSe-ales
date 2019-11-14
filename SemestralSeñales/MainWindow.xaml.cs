@@ -31,23 +31,6 @@ namespace SemestralSeñales
             InitializeComponent();
         }
 
-        private void BtnIniciar_Click(object sender, RoutedEventArgs e)
-        {
-            //inicializar la conexion
-            waveIn = new WaveIn();
-
-            //establecer el formato
-            waveIn.WaveFormat = new WaveFormat(44100, 16, 1);
-            formato = waveIn.WaveFormat;
-
-            //duracion del buffer
-            waveIn.BufferMilliseconds = 500;
-
-            //con que funcion respondemos cuando se llena el buffer
-            waveIn.DataAvailable += WaveIn_DataAvailable;
-
-            waveIn.StartRecording();
-        }
 
         private void WaveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
@@ -92,9 +75,38 @@ namespace SemestralSeñales
             lblHertz.Text = frecuenciaFundamental.ToString("N") + "H";
         }
 
-        private void BtnDetener_Click(object sender, RoutedEventArgs e)
+
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
+            //inicializar la conexion
+            waveIn = new WaveIn();
+
+            //establecer el formato
+            waveIn.WaveFormat = new WaveFormat(44100, 16, 1);
+            formato = waveIn.WaveFormat;
+
+            //duracion del buffer
+            waveIn.BufferMilliseconds = 500;
+
+            //con que funcion respondemos cuando se llena el buffer
+            waveIn.DataAvailable += WaveIn_DataAvailable;
+
             waveIn.StartRecording();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            waveIn.StopRecording();
+        }
+
+        private void btnYes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

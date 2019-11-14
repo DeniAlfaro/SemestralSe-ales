@@ -8,10 +8,16 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid>
-            <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="BtnIniciar_Click"/>
-            <Button x:Name="btnDetener" Content="Detener" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Width="75"/>
-            <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="366,19,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48"/>
-
+            <Image x:Name="imgMenu" Source="MenuBeatBocho.png" Margin="10,0,-10,0" Visibility="Visible"/>
+            
+            <Button Margin="309,200,275,185" BorderBrush="{x:Null}" Background="Transparent" x:Name="btnPlay" Click="btnPlay_Click" Visibility="Visible"></Button>
+            <Button Margin="309,252,275,133" BorderBrush="{x:Null}" Background="Transparent" x:Name="btnExit" Click="btnExit_Click" Visibility="Visible"></Button>
+            <Image x:Name="imgFondo" Source="juegoyobstaculos.png" Margin="0,-140,-521,-137" Visibility="Hidden"></Image>
+            <Image x:Name="imgCarrito" Source="carrito.png" Margin="0,322,654,24" Visibility="Hidden"></Image>
+            <Image x:Name="imgExit" Source="ExitBeatBocho.png"  Visibility="Hidden"></Image>
+            <Button Margin="338,262,413,121" Background="Transparent" BorderBrush="{x:Null}" x:Name="btnNo" Click="btnNo_Click" Visibility="Hidden"></Button>
+            <Button Margin="413,262,338,121" Background="Transparent" BorderBrush="{x:Null}" x:Name="btnYes" Click="btnYes_Click"  Visibility="Hidden"/>
+            <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48"/>
         </Grid>
     </Grid>
 </Window>
