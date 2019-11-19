@@ -23,9 +23,12 @@ namespace SemestralSeñales
     /// </summary>
     public partial class MainWindow : Window
     {
+        const int umbral = 800;
         WaveIn waveIn; //conexion con microfono
         WaveFormat formato; //formato de audio
         enum EstadoJuego { Menu, Gameplay, Gameover };
+        enum Carril { Arriba, Abajo };
+        Carril CarrilActual = Carril.Arriba;
         public MainWindow()
         {
             InitializeComponent();
@@ -69,10 +72,19 @@ namespace SemestralSeñales
                     + (muestrasComplejas[i].Y * muestrasComplejas[i].Y));
 
             }
-            int indiceValorMaximo = valoresAbsolutos.ToList().IndexOf(valoresAbsolutos.Max());
+            var mitadValoresAbsolutos = valoresAbsolutos.Take(valoresAbsolutos.Length / 2).ToList();
+            int indiceValorMaximo = mitadValoresAbsolutos.IndexOf(mitadValoresAbsolutos.Max());
             float frecuenciaFundamental = (float)(indiceValorMaximo * formato.SampleRate) / (float)(valoresAbsolutos.Length);
 
             lblHertz.Text = frecuenciaFundamental.ToString("N") + "H";
+
+            if(frecuenciaFundamental > umbral)
+            {
+                CarrilActual = Carril.Arriba;
+            } else
+            {
+                CarrilActual = Carril.Abajo;
+            }
         }
 
 
