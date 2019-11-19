@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Diagnostics;
 
 using NAudio;
 using NAudio.Wave;
@@ -27,11 +29,27 @@ namespace SemestralSeñales
         WaveIn waveIn; //conexion con microfono
         WaveFormat formato; //formato de audio
         enum EstadoJuego { Menu, Gameplay, Gameover };
-        enum Carril { Arriba, Abajo };
+        EstadoJuego estadoActual = EstadoJuego.Menu;
+
+        enum Carril { Arriba, Abajo, Ninguna };
         Carril CarrilActual = Carril.Arriba;
+
+        double velocidadCarrito = 70;
+
+        double cambioDeCarrilPixeles = 50;
+
+        double velocidadSalto = 5;
+        double cantidadSaltoCambioDeCarril = 0;
         public MainWindow()
         {
             InitializeComponent();
+
+            // 1. establecer instrucciones
+            ThreadStart threadStart = new ThreadStart(actualizar);
+            // 2. inicializar el Thread
+            Thread threadMover = new Thread(threadStart);
+            // 3. ejecutar el Thread
+            threadMover.Start();
         }
 
 
@@ -87,6 +105,100 @@ namespace SemestralSeñales
             }
         }
 
+
+        void moverCarrito(TimeSpan deltaTime)
+        {
+            if (estadoActual == EstadoJuego.Gameplay)
+            {
+                double topCarritoActual = Canvas.GetTop(imgCarrito);
+                switch (CarrilActual)
+                {
+
+                    case Carril.Arriba:
+                        double cantidadMovimiento = ((cambioDeCarrilPixeles * deltaTime.TotalSeconds) * velocidadSalto);
+                        cantidadSaltoCambioDeCarril += cantidadMovimiento;
+                        if (cantidadSaltoCambioDeCarril <= cambioDeCarrilPixeles)
+                        {
+                            Canvas.SetTop(imgCarrito, topCarritoActual - cantidadMovimiento);
+                        }
+                        else
+                        {
+                            CarrilActual = Carril.Abajo;
+                        }
+                        break;
+                    case Carril.Abajo:
+                        double nuevaPosicion = topCarritoActual + (velocidadCarrito * deltaTime.TotalSeconds);
+                        if (nuevaPosicion + imgCarrito.Width <= 450)
+                        {
+                            Canvas.SetTop(imgCarrito, nuevaPosicion);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        void actualizar()
+        {
+
+        }
+
+        /*void actualizar()
+        {
+
+            while (true)
+            {
+                Dispatcher.Invoke(
+                () =>
+                {
+                    var tiempoActual = stopwatch.Elapsed;
+                    var deltaTime = tiempoActual - tiempoAnterior;
+                    if (estadoActual == EstadoJuego.Gameplay)
+                    {
+
+                        miCanvas.Focus();
+                        moverCarrito(deltaTime);
+
+                        //colisiones
+                        foreach (Popotes popote in popotes)
+                        {
+                            double xTurtle = Canvas.GetLeft(imgTurtle);
+                            double xPopotes = Canvas.GetLeft(popote.Imagen);
+                            double yTurtle = Canvas.GetTop(imgTurtle);
+                            double yPopotes = Canvas.GetTop(popote.Imagen);
+
+                            if (xPopotes + popote.Imagen.Width >= xTurtle && xPopotes <= xTurtle + imgTurtle.Width &&
+                                yPopotes + popote.Imagen.Height >= yTurtle && yPopotes <= yTurtle + imgTurtle.Height)
+                            {
+                                estadoActual = EstadoJuego.Gameover;
+                                miCanvas.Visibility = Visibility.Collapsed;
+                                canvasGameOver.Visibility = Visibility.Visible;
+                            }
+                        }
+
+                        if (score >= 200)
+                        {
+                            lblNivel1.Visibility = Visibility.Collapsed;
+                            lblNivel2.Visibility = Visibility.Visible;
+                            imgFondo2.Visibility = Visibility.Collapsed;
+                            imgFondo1.Visibility = Visibility.Visible;
+                        }
+
+                        if (score >= 350)
+                        {
+                            lblNivel2.Visibility = Visibility.Collapsed;
+                            lblNivel3.Visibility = Visibility.Visible;
+                            imgFondo1.Visibility = Visibility.Collapsed;
+                            imgFondo3.Visibility = Visibility.Visible;
+                        }
+
+                        tiempoAnterior = tiempoActual;
+                    }
+                });
+
+            }
+        }*/
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
