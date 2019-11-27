@@ -39,10 +39,23 @@ namespace SemestralSeñales
         double cambioDeCarrilPixeles = 50;
 
         double velocidadSalto = 5;
-        double cantidadSaltoCambioDeCarril = 0;
+        double cantidadSaltoCambioDeCarril = 5;
+
+        Stopwatch stopwatch;
+        TimeSpan tiempoAnterior;
+
+        List<Piedras> piedras = new List<Piedras>();
         public MainWindow()
         {
             InitializeComponent();
+            CanvasGamePlay.Focus();
+
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
+            tiempoAnterior = stopwatch.Elapsed;
+
+            piedras.Add(new Piedras(imgPiedra1));
+            piedras.Add(new Piedras(imgPiedra2));
 
             // 1. establecer instrucciones
             ThreadStart threadStart = new ThreadStart(actualizar);
@@ -142,11 +155,6 @@ namespace SemestralSeñales
         void actualizar()
         {
 
-        }
-
-        /*void actualizar()
-        {
-
             while (true)
             {
                 Dispatcher.Invoke(
@@ -157,40 +165,25 @@ namespace SemestralSeñales
                     if (estadoActual == EstadoJuego.Gameplay)
                     {
 
-                        miCanvas.Focus();
+                        CanvasGamePlay.Focus();
                         moverCarrito(deltaTime);
 
                         //colisiones
-                        foreach (Popotes popote in popotes)
+                        //faltan colisiones con baches (que no los he puesto porque no los puedo poner xd) y colision con el cono
+                        foreach (Piedras piedra in piedras)
                         {
-                            double xTurtle = Canvas.GetLeft(imgTurtle);
-                            double xPopotes = Canvas.GetLeft(popote.Imagen);
-                            double yTurtle = Canvas.GetTop(imgTurtle);
-                            double yPopotes = Canvas.GetTop(popote.Imagen);
+                            double xCarrito = Canvas.GetLeft(imgCarrito);
+                            double xPiedra = Canvas.GetLeft(piedra.Imagen);
+                            double yCarrito = Canvas.GetTop(imgCarrito);
+                            double yPiedra = Canvas.GetTop(piedra.Imagen);
 
-                            if (xPopotes + popote.Imagen.Width >= xTurtle && xPopotes <= xTurtle + imgTurtle.Width &&
-                                yPopotes + popote.Imagen.Height >= yTurtle && yPopotes <= yTurtle + imgTurtle.Height)
+                            if (xPiedra + piedra.Imagen.Width >= xCarrito && xPiedra <= xCarrito + imgCarrito.Width &&
+                                yPiedra + piedra.Imagen.Height >= yCarrito && yPiedra <= yCarrito + imgCarrito.Height)
                             {
                                 estadoActual = EstadoJuego.Gameover;
-                                miCanvas.Visibility = Visibility.Collapsed;
-                                canvasGameOver.Visibility = Visibility.Visible;
+                                CanvasGamePlay.Visibility = Visibility.Collapsed;
+                                CanvasExit.Visibility = Visibility.Visible; //cambiarlo a pantalla gameover(que todavia no está hecha jeje)
                             }
-                        }
-
-                        if (score >= 200)
-                        {
-                            lblNivel1.Visibility = Visibility.Collapsed;
-                            lblNivel2.Visibility = Visibility.Visible;
-                            imgFondo2.Visibility = Visibility.Collapsed;
-                            imgFondo1.Visibility = Visibility.Visible;
-                        }
-
-                        if (score >= 350)
-                        {
-                            lblNivel2.Visibility = Visibility.Collapsed;
-                            lblNivel3.Visibility = Visibility.Visible;
-                            imgFondo1.Visibility = Visibility.Collapsed;
-                            imgFondo3.Visibility = Visibility.Visible;
                         }
 
                         tiempoAnterior = tiempoActual;
@@ -198,10 +191,14 @@ namespace SemestralSeñales
                 });
 
             }
-        }*/
+        }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
+            estadoActual = EstadoJuego.Gameplay;
+            CanvasMenu.Visibility = Visibility.Collapsed;
+            CanvasGamePlay.Visibility = Visibility.Visible;
+        
             //inicializar la conexion
             waveIn = new WaveIn();
 

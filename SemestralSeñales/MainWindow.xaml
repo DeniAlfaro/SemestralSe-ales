@@ -7,21 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid>
-            <Image x:Name="imgMenu" Source="MenuBeatBocho.png" Margin="10,0,-10,0" Visibility="Hidden"/>
-            
-            <Button Margin="309,200,275,185" BorderBrush="{x:Null}" Background="Transparent" x:Name="btnPlay" Click="btnPlay_Click" Visibility="Visible"></Button>
-            <Button Margin="309,252,275,133" BorderBrush="{x:Null}" Background="Transparent" x:Name="btnExit" Click="btnExit_Click" Visibility="Visible"></Button>
-            <Image x:Name="imgFondo" Source="juegoyobstaculos(2).png" Margin="0,-140,-521,-137" Visibility="Visible"></Image>
-            <Image x:Name="imgCarrito" Source="carrito.png" Margin="0,322,654,24" Visibility="Hidden"></Image>
-            <Image x:Name="imgCono" Source="conoObstaculo.png" Visibility="Visible" Margin="160,322,571,47"></Image>
-            <Image x:Name="imgPiedra1" Source="piedraObstaculo.png" Visibility="Visible" Margin="572,331,140,47"></Image>
-            <Image x:Name="imgPiedra2" Source="piedraObstaculo2.png" Visibility="Visible" Margin="1094,320,-400,47"></Image>
+        <Canvas x:Name="CanvasMenu" Visibility="Visible">
+            <Image x:Name="imgMenu" Source="MenuBeatBocho.png" Visibility="Visible" Height="419" Canvas.Left="42" Width="721"/>
 
-            <Image x:Name="imgExit" Source="ExitBeatBocho.png"  Visibility="Hidden"></Image>
-            <Button Margin="338,262,413,121" Background="Transparent" BorderBrush="{x:Null}" x:Name="btnNo" Click="btnNo_Click" Visibility="Hidden"></Button>
-            <Button Margin="413,262,338,121" Background="Transparent" BorderBrush="{x:Null}" x:Name="btnYes" Click="btnYes_Click"  Visibility="Hidden"/>
-            <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48"/>
-        </Grid>
+            <Button BorderBrush="{x:Null}" Background="Transparent" x:Name="btnPlay" Click="btnPlay_Click" Visibility="Visible" Height="34" Canvas.Left="309" Canvas.Top="200" Width="192"/>
+            <Button BorderBrush="{x:Null}" Background="Transparent" x:Name="btnExit" Click="btnExit_Click" Visibility="Visible" Height="39" Canvas.Left="309" Canvas.Top="252" Width="192"/>
+        </Canvas>
+        <Canvas x:Name="CanvasGamePlay" Visibility="Hidden">
+            <Image x:Name="imgFondo" Source="juegoyobstaculos(2).png" Height="417" Canvas.Top="2" Width="1312"/>
+            <Image x:Name="imgCarrito" Source="carrito.png" Height="59" Canvas.Top="312" Width="132" Canvas.Left="-38"/>
+            <Image x:Name="imgCono" Source="conoObstaculo.png" Height="47" Canvas.Left="222" Canvas.Top="320" Width="36"/>
+            <Image x:Name="imgPiedra1" Source="piedraObstaculo.png" Height="44" Canvas.Left="549" Canvas.Top="365" Width="74"/>
+            <Image x:Name="imgPiedra2" Source="piedraObstaculo2.png" Height="54" Canvas.Left="974" Canvas.Top="322" Width="64"/>
+        </Canvas>
+        <Canvas x:Name="CanvasExit" Visibility="Hidden">
+            <Image x:Name="imgExit" Source="ExitBeatBocho.png"  Visibility="Visible" Height="419" Width="732"></Image>
+            <Button Background="Transparent" BorderBrush="{x:Null}" x:Name="btnNo" Click="btnNo_Click" Visibility="Visible" Height="37" Canvas.Left="314" Canvas.Top="262" Width="37"/>
+            <Button Background="Transparent" BorderBrush="{x:Null}" x:Name="btnYes" Click="btnYes_Click"  Visibility="Visible" Height="38" Canvas.Left="384" Canvas.Top="261" Width="40"/>
+        </Canvas>
+        <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48"/>
+
     </Grid>
 </Window>
