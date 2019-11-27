@@ -102,7 +102,6 @@
   <ItemGroup>
     <Resource Include="carrito.png" />
     <Resource Include="ExitBeatBocho.png" />
-    <Resource Include="juegoyobstaculos.png" />
     <Resource Include="MenuBeatBocho.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
