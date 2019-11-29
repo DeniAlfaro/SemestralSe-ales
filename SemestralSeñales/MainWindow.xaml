@@ -11,7 +11,7 @@
             <Image x:Name="imgMenu" Source="MenuBeatBocho.png" Visibility="Visible" Height="419" Canvas.Left="42" Width="721"/>
             <Image Source="carrito.png" Canvas.Left="571" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
             <Image Source="Carro1.png" Canvas.Left="258" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
-            <Image Source="Carro2.png" Canvas.Left="413" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
+            <Image Source="c.png" Canvas.Left="413" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
             <Image Source="Carro3.png" Canvas.Left="104" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
 
             <StackPanel Canvas.Left="91" Canvas.Top="311" Width="665" Orientation="Horizontal" >
@@ -23,24 +23,56 @@
             <Button BorderBrush="{x:Null}" Background="Transparent" x:Name="btnPlay" Click="btnPlay_Click" Visibility="Visible" Height="34" Canvas.Left="309" Canvas.Top="200" Width="192"/>
             <Button BorderBrush="{x:Null}" Background="Transparent" x:Name="btnExit" Click="btnExit_Click" Visibility="Visible" Height="39" Canvas.Left="309" Canvas.Top="252" Width="192"/>
         </Canvas>
-        <Canvas x:Name="CanvasGamePlay" Visibility="Visible">
-            <Image x:Name="Moneda" Source="Moneda.png" Height="76" Canvas.Top="172" Width="49" Canvas.Left="979"/>
-            <Image x:Name="imgCarrito" Source="carrito.png" Height="60" Canvas.Top="172" Width="132" Canvas.Left="10"/>
-            <Image x:Name="imgCono" Source="conoObstaculo.png" Height="47" Canvas.Left="834" Canvas.Top="258" Width="36"/>
-            <Image x:Name="imgPiedra1" Source="piedraObstaculo.png" Height="44" Canvas.Left="810" Canvas.Top="106" Width="74" Visibility="Visible"/>
-            <Image x:Name="imgPiedra2" Source="piedraObstaculo2.png" Height="54" Canvas.Left="964" Canvas.Top="-2" Width="64" Visibility="Visible"/>
-            <Image x:Name="imgPiedra3" Source="conoObstaculo.png" Height="54" Canvas.Left="1104" Canvas.Top="139" Width="64" Visibility="Visible"/>
-            <Image x:Name="imgPiedra4" Source="conoObstaculo.png" Height="54" Canvas.Left="1148" Canvas.Top="288" Width="64" Visibility="Visible"/>
+        <Canvas x:Name="CanvasGamePlay" Visibility="Collapsed">
+
+            <Image x:Name="FOndo" Source="Cielo.png" Height="466" Width="1427" Stretch="Fill" Visibility="Visible" Canvas.Left="-16" Canvas.Top="-40"/>
+
+            <Image x:Name="LaMontana1" Source="Montanasfront.png" Height="466" Width="1193" Stretch="Fill" Visibility="Visible" Canvas.Left="-16" Canvas.Top="-40"/>
+            <Image x:Name="LaMontana2" Source="Montanasfront.png" Height="466" Width="1193" Stretch="Fill" Visibility="Visible" Canvas.Left="1200" Canvas.Top="-40"/>
+
+
+            <Image x:Name="LaTierra1" Source="Tierra.png" Height="466" Width="1193" Stretch="Fill" Visibility="Visible" Canvas.Left="-16" Canvas.Top="-40"/>
+            <Image x:Name="LaTierra2" Source="Tierra.png" Height="466" Width="1193" Stretch="Fill" Visibility="Visible" Canvas.Left="1160" Canvas.Top="-40"/>
+
+            <Image x:Name="LaCarreta1" Source="Lacarretera.png" Height="466" Width="1193" Stretch="Fill" Visibility="Visible" Canvas.Left="-16" Canvas.Top="-16"/>
+            <Image x:Name="LaCarreta2" Source="Lacarretera.png" Height="466" Width="1193" Canvas.Left="1152" Stretch="Fill" Visibility="Visible" Canvas.Top="-16"/>
+            <Image x:Name="imgCarrito" Source="carrito.png" Height="40" Canvas.Top="167" Width="88" Canvas.Left="10" Stretch="Fill" Visibility="Visible"/>
+
+            <Image x:Name="Moneda" Source="Moneda.png" Height="76" Canvas.Top="235" Width="49" Canvas.Left="1152"/>
+            <Image x:Name="Moneda1" Source="Moneda.png" Height="76" Canvas.Top="131" Width="49" Canvas.Left="1239"/>
+            <Image x:Name="Moneda3" Source="Moneda.png" Height="76" Canvas.Top="235" Width="49" Canvas.Left="1416"/>
+            <Image x:Name="Moneda5" Source="Moneda.png" Height="76" Canvas.Top="131" Width="49" Canvas.Left="996"/>
+
+            <Image x:Name="imgPiedra1" Source="piedraObstaculo.png" Height="44" Canvas.Left="786" Canvas.Top="131" Width="74" Visibility="Visible"/>
+            <Image x:Name="imgPiedra2" Source="piedraObstaculo2.png" Height="54" Canvas.Left="1058" Canvas.Top="20" Width="64" Visibility="Visible"/>
+            <Image x:Name="imgPiedra3" Source="conoObstaculo.png" Height="54" Canvas.Left="897" Canvas.Top="257" Width="64" Visibility="Visible"/>
+            <Image x:Name="imgPiedra4" Source="conoObstaculo.png" Height="54" Canvas.Left="1306" Canvas.Top="63" Width="64" Visibility="Visible" RenderTransformOrigin="0.781,1.148"/>
+            <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="55,10,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE5DA9C" Offset="0"/>
+                        <GradientStop Color="#FF9A6800" Offset="0.4"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock x:Name="Dinero" HorizontalAlignment="Left" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48" Canvas.Left="641" Canvas.Top="11">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE5DA9C" Offset="0"/>
+                        <GradientStop Color="#FF9A6800" Offset="0.4"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
 
 
         </Canvas>
         <Canvas x:Name="CanvasExit" Visibility="Collapsed">
             <Image x:Name="imgExit" Source="ExitBeatBocho.png"  Visibility="Visible" Height="419" Width="732"></Image>
             <Label Content="The Beat is over, Johnny :___(" Canvas.Left="117" Canvas.Top="141" Foreground="#FF9A6800" Height="167" Width="556" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Impact" FontSize="50" Background="#FFF1EBB4"></Label>
-            <Label Name="Score" Content="" Canvas.Left="78" Canvas.Top="209" Foreground="#FFF00E0E" Height="167" Width="674" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Impact" FontSize="50" Background="#FFF1EBB4"></Label>
+            <Label Name="Score" Content="" Canvas.Left="340" Canvas.Top="209" Foreground="#FFF00E0E" Height="167" Width="392" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Impact" FontSize="50" Background="#FFF1EBB4"></Label>
 
         </Canvas>
-        <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="0,197,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48"/>
+
 
     </Grid>
 </Window>

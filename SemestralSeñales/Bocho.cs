@@ -20,11 +20,11 @@ namespace SemestralSeñales
     {
         public Image Imagen { get; set; }
 
-        public enum Direccion { Izquierda, Derecha, Arriba, Abajo, Estatico };
+        public enum Direccion {  Arriba, Abajo, Estatico };
         Direccion DireccionActual { get; set; }
 
-        double PosicionX { get; set; }
-        double PosicionY { get; set; }
+        public double PosicionX { get; set; }
+        public double PosicionY { get; set; }
 
         public double Velocidad { get; set; }
         public Bocho(Image imagen)
