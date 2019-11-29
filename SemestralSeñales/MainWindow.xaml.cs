@@ -28,7 +28,7 @@ namespace SemestralSeñales
     {
         double score = 0;
         double velocidadobjetos = 0;
-        const int umbral = 1000;
+        const int umbral = 400;
         WaveIn waveIn; //conexion con microfono
         WaveFormat formato; //formato de audio
         enum EstadoJuego { Menu, Gameplay, Gameover };
@@ -182,7 +182,7 @@ namespace SemestralSeñales
             foreach (Piedras montana in montanas)
             {
                 montana.Mover(deltaTime);
-                montana.Velocidad += velocidadtierra * deltaTime;
+                montana.Velocidad += velocidadmontana * deltaTime;
                 if (montana.PosicionX <= -1180)
                 {
                     montana.PosicionX = 1200;
