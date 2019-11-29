@@ -13,11 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace SemestralSeñales
 {
-    public class Piedras
+    class Bocho
     {
         public Image Imagen { get; set; }
+
         public enum Direccion { Izquierda, Derecha, Arriba, Abajo, Estatico };
         Direccion DireccionActual { get; set; }
 
@@ -25,16 +27,17 @@ namespace SemestralSeñales
         double PosicionY { get; set; }
 
         public double Velocidad { get; set; }
-
-        public Piedras(Image imagen)
+        public Bocho(Image imagen)
         {
             Imagen = imagen;
+
             PosicionX = Canvas.GetLeft(imagen);
             PosicionY = Canvas.GetTop(imagen);
 
             DireccionActual = Direccion.Estatico;
 
-            Velocidad = 20;
+            Velocidad = 1;
+
         }
         public void CambiarDireccion(Direccion nuevaDireccion)
         {
@@ -45,16 +48,19 @@ namespace SemestralSeñales
         {
             switch (DireccionActual)
             {
-                case Direccion.Izquierda:
-                    PosicionX -= Velocidad * deltaTime;
+                case Direccion.Abajo:
+                    PosicionY += Velocidad * deltaTime;
 
                     break;
-  
+                case Direccion.Arriba:
+                    PosicionY -= Velocidad * deltaTime;
+
+                    break;
                 default:
                     break;
             }
             Canvas.SetLeft(Imagen, PosicionX);
             Canvas.SetTop(Imagen, PosicionY);
         }
-    }
+        }
 }

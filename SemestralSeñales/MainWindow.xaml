@@ -9,23 +9,38 @@
     <Grid>
         <Canvas x:Name="CanvasMenu" Visibility="Visible">
             <Image x:Name="imgMenu" Source="MenuBeatBocho.png" Visibility="Visible" Height="419" Canvas.Left="42" Width="721"/>
+            <Image Source="carrito.png" Canvas.Left="571" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
+            <Image Source="Carro1.png" Canvas.Left="258" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
+            <Image Source="Carro2.png" Canvas.Left="413" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
+            <Image Source="Carro3.png" Canvas.Left="104" Canvas.Top="311" Height="57" RenderTransformOrigin="0.5,0.5" Width="128"/>
 
+            <StackPanel Canvas.Left="91" Canvas.Top="311" Width="665" Orientation="Horizontal" >
+                <RadioButton x:Name="Facil" Margin="70" IsChecked="True"/>
+                <RadioButton x:Name="Medio" Margin="70"/>
+                <RadioButton x:Name="Difizcil" Margin="70"/>
+                <RadioButton x:Name="Imposibruu" Margin="70"/>
+            </StackPanel>
             <Button BorderBrush="{x:Null}" Background="Transparent" x:Name="btnPlay" Click="btnPlay_Click" Visibility="Visible" Height="34" Canvas.Left="309" Canvas.Top="200" Width="192"/>
             <Button BorderBrush="{x:Null}" Background="Transparent" x:Name="btnExit" Click="btnExit_Click" Visibility="Visible" Height="39" Canvas.Left="309" Canvas.Top="252" Width="192"/>
         </Canvas>
-        <Canvas x:Name="CanvasGamePlay" Visibility="Hidden">
-            <Image x:Name="imgFondo" Source="juegoyobstaculos(2).png" Height="417" Canvas.Top="2" Width="1312"/>
-            <Image x:Name="imgCarrito" Source="carrito.png" Height="59" Canvas.Top="312" Width="132" Canvas.Left="-38"/>
-            <Image x:Name="imgCono" Source="conoObstaculo.png" Height="47" Canvas.Left="222" Canvas.Top="320" Width="36"/>
-            <Image x:Name="imgPiedra1" Source="piedraObstaculo.png" Height="44" Canvas.Left="549" Canvas.Top="365" Width="74"/>
-            <Image x:Name="imgPiedra2" Source="piedraObstaculo2.png" Height="54" Canvas.Left="974" Canvas.Top="322" Width="64"/>
+        <Canvas x:Name="CanvasGamePlay" Visibility="Visible">
+            <Image x:Name="Moneda" Source="Moneda.png" Height="76" Canvas.Top="172" Width="49" Canvas.Left="979"/>
+            <Image x:Name="imgCarrito" Source="carrito.png" Height="60" Canvas.Top="172" Width="132" Canvas.Left="10"/>
+            <Image x:Name="imgCono" Source="conoObstaculo.png" Height="47" Canvas.Left="834" Canvas.Top="258" Width="36"/>
+            <Image x:Name="imgPiedra1" Source="piedraObstaculo.png" Height="44" Canvas.Left="810" Canvas.Top="106" Width="74" Visibility="Visible"/>
+            <Image x:Name="imgPiedra2" Source="piedraObstaculo2.png" Height="54" Canvas.Left="964" Canvas.Top="-2" Width="64" Visibility="Visible"/>
+            <Image x:Name="imgPiedra3" Source="conoObstaculo.png" Height="54" Canvas.Left="1104" Canvas.Top="139" Width="64" Visibility="Visible"/>
+            <Image x:Name="imgPiedra4" Source="conoObstaculo.png" Height="54" Canvas.Left="1148" Canvas.Top="288" Width="64" Visibility="Visible"/>
+
+
         </Canvas>
-        <Canvas x:Name="CanvasExit" Visibility="Hidden">
+        <Canvas x:Name="CanvasExit" Visibility="Collapsed">
             <Image x:Name="imgExit" Source="ExitBeatBocho.png"  Visibility="Visible" Height="419" Width="732"></Image>
-            <Button Background="Transparent" BorderBrush="{x:Null}" x:Name="btnNo" Click="btnNo_Click" Visibility="Visible" Height="37" Canvas.Left="314" Canvas.Top="262" Width="37"/>
-            <Button Background="Transparent" BorderBrush="{x:Null}" x:Name="btnYes" Click="btnYes_Click"  Visibility="Visible" Height="38" Canvas.Left="384" Canvas.Top="261" Width="40"/>
+            <Label Content="The Beat is over, Johnny :___(" Canvas.Left="117" Canvas.Top="141" Foreground="#FF9A6800" Height="167" Width="556" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Impact" FontSize="50" Background="#FFF1EBB4"></Label>
+            <Label Name="Score" Content="" Canvas.Left="78" Canvas.Top="209" Foreground="#FFF00E0E" Height="167" Width="674" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Impact" FontSize="50" Background="#FFF1EBB4"></Label>
+
         </Canvas>
-        <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48"/>
+        <TextBlock x:Name="lblHertz" HorizontalAlignment="Left" Margin="0,197,0,0" TextWrapping="Wrap" Text="-Hz" VerticalAlignment="Top" FontSize="48"/>
 
     </Grid>
 </Window>

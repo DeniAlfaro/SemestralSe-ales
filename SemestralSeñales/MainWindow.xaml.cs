@@ -23,48 +23,47 @@ namespace SemestralSeñales
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
+    ///
     public partial class MainWindow : Window
     {
-        const int umbral = 800;
+        double velocidadobjetos = 0;
+        const int umbral = 1000;
         WaveIn waveIn; //conexion con microfono
         WaveFormat formato; //formato de audio
         enum EstadoJuego { Menu, Gameplay, Gameover };
         EstadoJuego estadoActual = EstadoJuego.Menu;
-
-        enum Carril { Arriba, Abajo, Ninguna };
-        Carril CarrilActual = Carril.Arriba;
-
-        double velocidadCarrito = 70;
-
-        double cambioDeCarrilPixeles = 50;
-
-        double velocidadSalto = 5;
-        double cantidadSaltoCambioDeCarril = 5;
-
+        Bocho bochomain;
+        double calando = 0;
         Stopwatch stopwatch;
         TimeSpan tiempoAnterior;
-
+        public float frecuenciaFundamental;
         List<Piedras> piedras = new List<Piedras>();
         public MainWindow()
         {
             InitializeComponent();
-            CanvasGamePlay.Focus();
-
             stopwatch = new Stopwatch();
             stopwatch.Start();
             tiempoAnterior = stopwatch.Elapsed;
 
             piedras.Add(new Piedras(imgPiedra1));
             piedras.Add(new Piedras(imgPiedra2));
+            piedras.Add(new Piedras(imgPiedra3));
+            piedras.Add(new Piedras(imgPiedra4));
+            piedras.Add(new Piedras(imgCono));
 
-            // 1. establecer instrucciones
-            ThreadStart threadStart = new ThreadStart(actualizar);
-            // 2. inicializar el Thread
-            Thread threadMover = new Thread(threadStart);
-            // 3. ejecutar el Thread
-            threadMover.Start();
+            bochomain = new Bocho(imgCarrito);
+
+            bochomain.CambiarDireccion(Bocho.Direccion.Arriba);
+            tiempoAnterior = stopwatch.Elapsed;
         }
+        public void cicloPrincipal()
+        {
+            while (estadoActual == EstadoJuego.Gameplay )
+            {
+                Dispatcher.Invoke(actualizar);
 
+            }
+        }
 
         private void WaveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
@@ -105,100 +104,86 @@ namespace SemestralSeñales
             }
             var mitadValoresAbsolutos = valoresAbsolutos.Take(valoresAbsolutos.Length / 2).ToList();
             int indiceValorMaximo = mitadValoresAbsolutos.IndexOf(mitadValoresAbsolutos.Max());
-            float frecuenciaFundamental = (float)(indiceValorMaximo * formato.SampleRate) / (float)(valoresAbsolutos.Length);
-
-            lblHertz.Text = frecuenciaFundamental.ToString("N") + "H";
-
-            if(frecuenciaFundamental > umbral)
-            {
-                CarrilActual = Carril.Arriba;
-            } else
-            {
-                CarrilActual = Carril.Abajo;
-            }
-        }
-
-
-        void moverCarrito(TimeSpan deltaTime)
-        {
-            if (estadoActual == EstadoJuego.Gameplay)
-            {
-                double topCarritoActual = Canvas.GetTop(imgCarrito);
-                switch (CarrilActual)
-                {
-
-                    case Carril.Arriba:
-                        double cantidadMovimiento = ((cambioDeCarrilPixeles * deltaTime.TotalSeconds) * velocidadSalto);
-                        cantidadSaltoCambioDeCarril += cantidadMovimiento;
-                        if (cantidadSaltoCambioDeCarril <= cambioDeCarrilPixeles)
-                        {
-                            Canvas.SetTop(imgCarrito, topCarritoActual - cantidadMovimiento);
-                        }
-                        else
-                        {
-                            CarrilActual = Carril.Abajo;
-                        }
-                        break;
-                    case Carril.Abajo:
-                        double nuevaPosicion = topCarritoActual + (velocidadCarrito * deltaTime.TotalSeconds);
-                        if (nuevaPosicion + imgCarrito.Width <= 450)
-                        {
-                            Canvas.SetTop(imgCarrito, nuevaPosicion);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
+            frecuenciaFundamental = (float)(indiceValorMaximo * formato.SampleRate) / (float)(valoresAbsolutos.Length);
+         
         }
 
         void actualizar()
         {
-
-            while (true)
+            TimeSpan tiempoActual = stopwatch.Elapsed;
+            double deltaTime = tiempoActual.TotalSeconds - tiempoAnterior.TotalSeconds;
+       
+            bochomain.Mover(deltaTime);
+            bochomain.Velocidad += 10 * deltaTime;
+            calando += deltaTime;
+            
+            if (frecuenciaFundamental >= umbral)
             {
-                Dispatcher.Invoke(
-                () =>
-                {
-                    var tiempoActual = stopwatch.Elapsed;
-                    var deltaTime = tiempoActual - tiempoAnterior;
-                    if (estadoActual == EstadoJuego.Gameplay)
-                    {
-
-                        CanvasGamePlay.Focus();
-                        moverCarrito(deltaTime);
-
-                        //colisiones
-                        //faltan colisiones con baches (que no los he puesto porque no los puedo poner xd) y colision con el cono
-                        foreach (Piedras piedra in piedras)
-                        {
-                            double xCarrito = Canvas.GetLeft(imgCarrito);
-                            double xPiedra = Canvas.GetLeft(piedra.Imagen);
-                            double yCarrito = Canvas.GetTop(imgCarrito);
-                            double yPiedra = Canvas.GetTop(piedra.Imagen);
-
-                            if (xPiedra + piedra.Imagen.Width >= xCarrito && xPiedra <= xCarrito + imgCarrito.Width &&
-                                yPiedra + piedra.Imagen.Height >= yCarrito && yPiedra <= yCarrito + imgCarrito.Height)
-                            {
-                                estadoActual = EstadoJuego.Gameover;
-                                CanvasGamePlay.Visibility = Visibility.Collapsed;
-                                CanvasExit.Visibility = Visibility.Visible; //cambiarlo a pantalla gameover(que todavia no está hecha jeje)
-                            }
-                        }
-
-                        tiempoAnterior = tiempoActual;
-                    }
-                });
-
+                bochomain.CambiarDireccion(Bocho.Direccion.Arriba);
             }
+            if (frecuenciaFundamental <= umbral)
+            {
+                bochomain.CambiarDireccion(Bocho.Direccion.Abajo);
+            }
+            //colisiones
+            //faltan colisiones con baches (que no los he puesto porque no los puedo poner xd) y colision con el cono
+            foreach (Piedras piedra in piedras)
+                {
+                    double xCarrito = Canvas.GetLeft(imgCarrito);
+                    double xPiedra = Canvas.GetLeft(piedra.Imagen);
+                    double yCarrito = Canvas.GetTop(imgCarrito);
+                    double yPiedra = Canvas.GetTop(piedra.Imagen);
+                piedra.Mover(deltaTime);
+                piedra.Velocidad += velocidadobjetos * deltaTime;
+                piedra.CambiarDireccion(Piedras.Direccion.Izquierda);
+
+                    if (xPiedra + piedra.Imagen.Width >= xCarrito && xPiedra <= xCarrito + imgCarrito.Width &&
+                        yPiedra + piedra.Imagen.Height >= yCarrito && yPiedra <= yCarrito + imgCarrito.Height)
+                    {
+                    lblHertz.Text = "Lo tocoo";
+                    
+                        estadoActual = EstadoJuego.Gameover;
+                        CanvasGamePlay.Visibility = Visibility.Collapsed;
+                        CanvasExit.Visibility = Visibility.Visible; //cambiarlo a pantalla gameover(que todavia no está hecha jeje)
+                        
+                    }
+                }
+                tiempoAnterior = tiempoActual;           
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
+            CanvasGamePlay.Focus();
+            ThreadStart threadStart = new ThreadStart(cicloPrincipal);
+            Thread thread = new Thread(threadStart);
+            thread.Start();
             estadoActual = EstadoJuego.Gameplay;
             CanvasMenu.Visibility = Visibility.Collapsed;
             CanvasGamePlay.Visibility = Visibility.Visible;
-        
+            if(Facil.IsChecked == true)
+            {
+                BitmapImage carro1 = new BitmapImage(new Uri("Carro3.png", UriKind.Relative));
+                bochomain.Imagen.Source = carro1;
+                velocidadobjetos = 7;
+            }
+            if (Medio.IsChecked == true)
+            {
+                BitmapImage carro2 = new BitmapImage(new Uri("Carro1.png", UriKind.Relative));
+                bochomain.Imagen.Source = carro2;
+                velocidadobjetos = 12;
+            }
+            if (Difizcil.IsChecked == true)
+            {
+                BitmapImage carro3 = new BitmapImage(new Uri("c.png", UriKind.Relative));
+                bochomain.Imagen.Source = carro3;
+                velocidadobjetos = 20;
+            }
+            if (Imposibruu.IsChecked == true)
+            {
+                BitmapImage carro4 = new BitmapImage(new Uri("carrito.png", UriKind.Relative));
+                bochomain.Imagen.Source = carro4;
+                velocidadobjetos = 25;
+            }
             //inicializar la conexion
             waveIn = new WaveIn();
 
@@ -217,17 +202,8 @@ namespace SemestralSeñales
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            waveIn.StopRecording();
+            System.Windows.Application.Current.Shutdown();
         }
 
-        private void btnYes_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnNo_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
